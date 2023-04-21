@@ -1518,62 +1518,247 @@ provisioning:
   ##
   topics:
   
-  #processing_kafka_topics:
+#processing_kafka_topics:
   - name: lms.audit.events
-    retention_time: 172800000
+    retention.ms: 172800000
   - name: lms.sso.events
-    num_of_partitions: 4
-    retention_time: 172800000
+    partitions: 4
+    retention.ms: 172800000
   - name: lms.user.account.merge
-    retention_time: 172800000
+    retention.ms: 172800000
   - name: lms.notification
-    retention_time: 172800000
+    retention.ms: 172800000
+  
+#KP
+  - name: telemetry.raw
+    partitions: 4
+    retention.ms: 604800000
+  - name: telemetry.valid
+    partitions: 4
+    retention.ms: 604800000
+  - name: telemetry.unique
+    partitions: 8
+    retention.ms: 604800000
+  - name: telemetry.duplicate
+    retention.ms: 86400000
+  - name: telemetry.sink
+    partitions: 8
+    retention.ms: 259200000
+  - name: telemetry.with_location
+    partitions: 8
+    retention.ms: 86400000
+  - name: telemetry.de_normalized
+    partitions: 4
+    retention.ms: 86400000
+  - name: telemetry.log
+    retention.ms: 86400000
+  - name: analytics.job_queue
+    retention.ms: 86400000
+  - name: learning.graph.events
+    retention.ms: 1209600000
+  - name: pipeline_metrics
+    retention.ms: 259200000 
+  - name: metrics
+    retention.ms: 604800000
+  - name: learning.graph.events.fail
+    retention.ms: 1209600000
+  - name: analytics_metrics
+    retention.ms: 86400000
+  - name: learning.job.request 
+    retention.ms: 1209600000 
+  - name: learning.job.request.fail
+    retention.ms: 1296000000 
+  - name: learning.republish.job.request
+  - name: telemetry.derived
+    retention.ms: 259200000
+  - name: telemetry.failed
+    retention.ms: 604800000
+  - name: telemetry.malformed
+    retention.ms: 604800000  
+  - name: telemetry.extractor.failed
+    retention.ms: 604800000
+  - name: telemetry.indexer.failed
+    retention.ms: 604800000
+  - name: coursebatch.job.request
+    retention.ms: 1209600000
+  - name: content.postpublish.request  
+    retention.ms: 1209600000
+  - name: coursebatch.certificate.request
+    retention.ms: 1209600000
+  - name: system.command     
+  - name: learning.events.failed
+    retention.ms: 604800000
+  - name: auto.creation.job.request
+    retention.ms: 1209600000
+  - name: auto.creation.job.request.failed
+    retention.ms: 1296000000
+  - name: contentstate.invalid
+    retention.ms: 604800000
+  - name: db.query.events
+    retention.ms: 604800000
+  - name: certificate.events.failed
+    retention.ms: 1296000000
+  - name: activity.agg.failed
+    retention.ms: 1296000000
+  - name: issue.certificate.request
+  - name: generate.certificate.request
+    retention.ms: 1209600000
+  - name: post.certificate.process.request
+    retention.ms: 1209600000
+  - name: post.certificate.process.failed
+    retention.ms: 1209600000
+  - name: generate.certificate.failed
+    retention.ms: 1209600000
+  - name: assessment.publish.request
+    retention.ms: 1209600000
+  - name: batch.enrolment.sync.request
+    retention.ms: 1209600000
+  - name: publish.job.request
+    retention.ms: 1209600000
+  - name: object.import.request
+    retention.ms: 1209600000
+  - name: dialcode.context.job.request
+    retention.ms: 1209600000
+  - name: dialcode.context.job.request.failed
+    retention.ms: 1209600000
 
+  
 #ml_service_topics:
   - name: ml.observation.raw
-    retention_time: 172800000
+    retention.ms: 172800000
   - name: ml.observation.druid
-    retention_time: 172800000  
+    retention.ms: 172800000  
   - name: ml.observation.evidence.druid
-    retention_time: 172800000
+    retention.ms: 172800000
   - name: ml.survey.raw
-    retention_time: 172800000
+    retention.ms: 172800000
   - name: ml.survey.druid
-    retention_time: 172800000    
+    retention.ms: 172800000    
   - name: ml.survey.evidence.druid
-    retention_time: 172800000
+    retention.ms: 172800000
   - name: ml.submission.rating.raw
-    retention_time: 172800000
+    retention.ms: 172800000
   - name: ml.incomplete.observation.raw
-    retention_time: 172800000
+    retention.ms: 172800000
   - name: ml.notification.raw
-    retention_time: 172800000
+    retention.ms: 172800000
   - name: ml.incomplete.survey.raw
-    retention_time: 172800000
+    retention.ms: 172800000
   - name: ml.improvement.project.submission
-    retention_time: 172800000
+    retention.ms: 172800000
   - name: ml.projects.submissions
-    retention_time: 172800000
+    retention.ms: 172800000
+#DP
+  - name: telemetry.ingestion
+    retention.ms: 259200000
+    partitions: 2
+    max_message_bytes: 5242880
+  - name: events.deviceprofile
+    retention.ms: 172800000
+    partitions: 2
+  - name: analytics.job_queue
+    retention.ms: 172800000
+  - name: analytics_metrics
+    retention.ms: 172800000
+  - name: druid.events.error
+    partitions: 2
+    retention.ms: 172800000
+  - name: druid.events.log
+    partitions: 2
+    retention.ms: 172800000
+  - name: druid.events.summary
+    partitions: 2
+    retention.ms: 172800000
+  - name: druid.events.telemetry
+    partitions: 2
+    retention.ms: 172800000
+  - name: events.deviceprofile
+    partitions: 2
+    retention.ms: 172800000
+  - name: prom.monitoring.metrics
+    retention.ms: 172800000
+  - name: telemetry.assess
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.assess.failed
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.assess.raw
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.audit
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.denorm 
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.derived
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.derived.unique
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.duplicate
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.error
+    retention.ms: 172800000
+  - name: telemetry.extractor.duplicate
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.extractor.failed
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.failed
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.ingest
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.metrics
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.raw
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.unique
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.unique.latest
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.unique.primary
+    partitions: 2
+    retention.ms: 172800000
+  - name: telemetry.unique.secondary
+    partitions: 2
+  - name: ml.observation.raw
+    retention.ms: 172800000
+  - name: ml.observation.druid
+    retention.ms: 172800000  
+  - name: qrimage.request
+  - name: events.telemetry
+  - name: events.summary
 
 #uci_service_topics:
   - name: inbound-error
-    retention_time: 86400000
+    retention.ms: 86400000
   - name: inbound-processed
-    retention_time: 86400000
+    retention.ms: 86400000
   - name: inbound-unprocessed
-    retention_time: 86400000
+    retention.ms: 86400000
   - name: outbound
-    retention_time: 86400000
+    retention.ms: 86400000
   - name: campaign
-    retention_time: 86400000
+    retention.ms: 86400000
   - name: odk.transformer
-    retention_time: 86400000
+    retention.ms: 86400000
   - name: uci.telemetry
-    retention_time: 86400000
+    retention.ms: 86400000
 
 #av_service_topics:
   - name: av.question.bulkupload
-    retention_time: 172800000
+    retention.ms: 172800000
 
   ## @param provisioning.nodeSelector Node labels for pod assignment
   ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
