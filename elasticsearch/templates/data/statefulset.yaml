@@ -163,7 +163,7 @@ spec:
                   fieldPath: metadata.name
             - name: ELASTICSEARCH_IS_DEDICATED_NODE
               value: "yes"
-            - name: ELASTICSEARCH_NODE_ROLES
+            - name: ELASTICSEARCH_NODE_TYPE
               value: "data"
             - name: ELASTICSEARCH_TRANSPORT_PORT_NUMBER
               value: {{ .Values.containerPorts.transport | quote }}
