@@ -19,3 +19,15 @@ metadata:
     name: {{ .Release.Name }}
 data:
 {{ (.Files.Glob "indices/*").AsConfig | indent 2 }}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-mappings-configmap
+  namespace: {{ .Release.Namespace }}
+  labels:
+    name: {{ .Release.Name }}
+data:
+{{ (.Files.Glob "mappings/*").AsConfig | indent 2 }}
+

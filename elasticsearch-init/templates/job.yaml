@@ -22,6 +22,8 @@ spec:
           mountPath: /opt/scripts
         - name: {{ .Release.Name }}-indices-volume
           mountPath: /opt/indices
+        - name: {{ .Release.Name }}-mappings-volume
+          mountPath: /opt/mappings
       restartPolicy: Never
       volumes:
       - name: {{ .Release.Name }}-scripts-volume
@@ -32,3 +34,7 @@ spec:
         configMap:
           name: {{ .Release.Name }}-indices-configmap
           defaultMode: 0777
+      - name: {{ .Release.Name }}-mappings-volume
+        configMap:
+          name: {{ .Release.Name }}-mappings-configmap
+          defaultMode: 0777    
