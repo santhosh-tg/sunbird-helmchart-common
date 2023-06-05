@@ -22,7 +22,12 @@ done
 echo "Creating mappings"
 
 cd /opt/mappings
-mapping_files=$(ls -l | awk 'NR>1{print $9}' | awk -F"." '{print $1}' | tr "\n" " " | sed 's/-mapping//g')
+
+# Exclude compositesearch from the list as the mapping type is different
+mapping_files=$(ls -l -I compositesearch-mapping.json | awk 'NR>1{print $9}' | awk -F"." '{print $1}' | tr "\n" " " | sed 's/-mapping//g')
+
+# Create mapping for compositesearch with type cs
+curl  -X PUT http://localhost:9200/compositesearch/_mapping/cs -H 'Content-Type: application/json' -d @compositesearch-mapping.json
 
 for file in ${mapping_files[@]}
 do
